@@ -18,7 +18,7 @@ let originCoords = { lat: 26.5500, lng: 74.9000 }; // Default to Rajasthan cente
 let originMarker = null;
 let activeProximityFilter = null;
 let activeMinDistance = 1;
-let activeMaxDistance = 5000;
+let activeMaxDistance = 300;
 let isPinModeActive = false;
 
 // Center coordinates of Rajasthan, India
@@ -373,7 +373,7 @@ function renderSchoolsTable() {
     });
     
     // Apply distance range slider filter
-    if (activeMinDistance > 1 || activeMaxDistance < 5000) {
+    if (activeMinDistance > 1 || activeMaxDistance < 300) {
         filteredSchools = filteredSchools.filter(school => school.distance >= activeMinDistance && school.distance <= activeMaxDistance);
     }
     
@@ -445,7 +445,7 @@ function drawMapMarkers() {
     );
     
     // Apply distance range slider filter
-    if (activeMinDistance > 1 || activeMaxDistance < 5000) {
+    if (activeMinDistance > 1 || activeMaxDistance < 300) {
         filteredSchools = filteredSchools.filter(school => {
             const dist = calculateDistance(originCoords.lat, originCoords.lng, school.latitude, school.longitude);
             return dist >= activeMinDistance && dist <= activeMaxDistance;
@@ -1167,8 +1167,8 @@ function setupDOMEventListeners() {
         const minVal = parseInt(minSlider.value);
         const maxVal = parseInt(maxSlider.value);
         
-        const percent1 = ((minVal - 1) / (5000 - 1)) * 100;
-        const percent2 = ((maxVal - 1) / (5000 - 1)) * 100;
+        const percent1 = ((minVal - 1) / (300 - 1)) * 100;
+        const percent2 = ((maxVal - 1) / (300 - 1)) * 100;
         
         sliderFill.style.left = percent1 + "%";
         sliderFill.style.right = (100 - percent2) + "%";
@@ -1193,8 +1193,8 @@ function setupDOMEventListeners() {
         activeMinDistance = minVal;
         activeMaxDistance = maxVal;
         
-        if (minVal === 1 && maxVal === 5000) {
-            lblSliderValue.innerText = "1 km - 5000 km";
+        if (minVal === 1 && maxVal === 300) {
+            lblSliderValue.innerText = "1 km - 300 km";
         } else {
             lblSliderValue.innerText = `${minVal} km - ${maxVal} km`;
         }
@@ -1221,13 +1221,13 @@ function setupDOMEventListeners() {
         item.addEventListener('click', () => {
             const range = item.getAttribute('data-range');
             
-            // Reset range slider value to maximum (1-5000 km) when filtering by bracket categories
+            // Reset range slider value to maximum (1-300 km) when filtering by bracket categories
             if (minSlider && maxSlider && lblSliderValue) {
                 minSlider.value = 1;
-                maxSlider.value = 5000;
+                maxSlider.value = 300;
                 activeMinDistance = 1;
-                activeMaxDistance = 5000;
-                lblSliderValue.innerText = "1 km - 5000 km";
+                activeMaxDistance = 300;
+                lblSliderValue.innerText = "1 km - 300 km";
                 updateSliderFill();
             }
             
@@ -1261,10 +1261,10 @@ function setupDOMEventListeners() {
             // Also reset range slider to maximum
             if (minSlider && maxSlider && lblSliderValue) {
                 minSlider.value = 1;
-                maxSlider.value = 5000;
+                maxSlider.value = 300;
                 activeMinDistance = 1;
-                activeMaxDistance = 5000;
-                lblSliderValue.innerText = "1 km - 5000 km";
+                activeMaxDistance = 300;
+                lblSliderValue.innerText = "1 km - 300 km";
                 updateSliderFill();
             }
             
