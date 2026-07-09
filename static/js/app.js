@@ -1204,7 +1204,14 @@ function setupDOMEventListeners() {
         // Deactivate category brackets to avoid conflicting filters
         activeProximityFilter = null;
         categoryItems.forEach(i => i.classList.remove('active'));
-        if (divResetFilter) divResetFilter.classList.add('hidden');
+        
+        if (divResetFilter) {
+            if (minVal > 1 || maxVal < 300) {
+                divResetFilter.classList.remove('hidden');
+            } else {
+                divResetFilter.classList.add('hidden');
+            }
+        }
         
         renderSchoolsTable();
         drawMapMarkers();
