@@ -1808,6 +1808,31 @@ body {
         padding-right: 0;
         padding-bottom: 20px;
     }
+    
+    /* Premium Mobile UI Enhancements */
+    .header-dev-badge {
+        display: none !important;
+    }
+    .logo-text h1 {
+        font-size: 14px !important;
+    }
+    .logo-text span {
+        font-size: 9px !important;
+        letter-spacing: 0.5px !important;
+    }
+    .map-left-overlay {
+        max-height: 45vh;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba(255,255,255,0.1) transparent;
+    }
+    .map-left-overlay::-webkit-scrollbar {
+        width: 4px;
+    }
+    .map-left-overlay::-webkit-scrollbar-thumb {
+        background: rgba(255,255,255,0.1);
+        border-radius: 2px;
+    }
 }
 
 /* ==========================================================================
@@ -1897,6 +1922,11 @@ body {
     
     .modal-card {
         padding: 15px !important;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr !important;
+        gap: 10px !important;
     }
 }
 

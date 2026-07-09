@@ -1492,6 +1492,22 @@ function setupDOMEventListeners() {
             }
         });
     });
+
+    // Collapse overlay cards by default on mobile devices to prevent covering the map on load
+    if (window.innerWidth <= 768) {
+        const originCard = document.getElementById('cardOrigin');
+        const filterCard = document.getElementById('cardFilterDistance');
+        if (originCard) originCard.classList.add('collapsed');
+        if (filterCard) filterCard.classList.add('collapsed');
+        
+        // Update chevrons
+        document.querySelectorAll('.collapsible-card.collapsed').forEach(card => {
+            const chevron = card.querySelector('.collapse-chevron');
+            if (chevron) {
+                chevron.classList.replace('fa-chevron-up', 'fa-chevron-down');
+            }
+        });
+    }
 }
 // ==========================================================================
 // END OF FILE
