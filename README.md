@@ -36,10 +36,10 @@ A premium, interactive, dark-themed dashboard mapping schools from a MySQL datab
    ```
 4. Edit the `.env` file and insert your MySQL credentials and Google Maps API Key:
    ```env
-   DB_HOST=10.68.128.254
-   DB_USER=hteapp
-   DB_PASSWORD=hteapp@123#
-   DB_NAME=live_lrsos_new
+   DB_HOST=************
+   DB_USER=************
+   DB_PASSWORD=************
+   DB_NAME=************
    GOOGLE_MAPS_API_KEY=your_key_here
    ```
 5. Run the development server:
