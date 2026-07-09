@@ -122,6 +122,9 @@ window.initMap = function() {
     // Initialize the draggable reference origin marker
     initOriginMarker();
 
+    // Trigger browser Geolocation immediately to center map on load
+    getUserLocation();
+
     // Start data fetch from server APIs
     fetchDashboardData();
 };
@@ -272,11 +275,8 @@ async function fetchDashboardData() {
             // Draw Map coordinates
             drawMapMarkers();
             
-            // Calculate initial distance metrics (default center of Rajasthan)
+            // Calculate initial distance metrics based on resolved origin location
             updateDistanceMetrics();
-            
-            // Trigger browser Geolocation to calculate distances
-            getUserLocation();
             
             // Hide loading overlay
             const overlay = document.getElementById('map-loading-overlay');
@@ -714,11 +714,24 @@ function initOriginMarker() {
         const pos = marker.getLatLng();
         originCoords = { lat: pos.lat, lng: pos.lng };
         
+        checkAndAdjustMapBounds(pos.lat, pos.lng);
+        
         // Resolve colony/area detail in real-time
         reverseGeocodeCoords(pos.lat, pos.lng);
         
         updateDistanceMetrics();
     });
+}
+
+// Check if location is outside Rajasthan bounds, and if so, dynamically disable map bounds lock
+function checkAndAdjustMapBounds(lat, lng) {
+    if (!map) return;
+    const pos = L.latLng(lat, lng);
+    if (RAJASTHAN_BOUNDS.contains(pos)) {
+        map.setMaxBounds(RAJASTHAN_BOUNDS);
+    } else {
+        map.setMaxBounds(null);
+    }
 }
 
 // Reverse geocode lat/lng coordinates to friendly human addresses (colony, road, landmark, city)
@@ -798,6 +811,8 @@ function getUserLocation() {
                 };
                 originCoords = userCoords;
                 
+                checkAndAdjustMapBounds(originCoords.lat, originCoords.lng);
+                
                 // Move origin marker and pan map
                 if (originMarker) {
                     originMarker.setLatLng([originCoords.lat, originCoords.lng]);
@@ -838,6 +853,8 @@ async function fallbackToIPGeolocation() {
                 lat: parseFloat(data.latitude),
                 lng: parseFloat(data.longitude)
             };
+            
+            checkAndAdjustMapBounds(originCoords.lat, originCoords.lng);
             
             if (originMarker) {
                 originMarker.setLatLng([originCoords.lat, originCoords.lng]);
