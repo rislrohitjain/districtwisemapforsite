@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practice Sample Project: Geospatial Mapping Portal</title>
+    <!-- Favicon & Icon links -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='images/logo.svg') }}">
+    <link rel="shortcut icon" type="image/svg+xml" href="{{ url_for('static', filename='images/logo.svg') }}">
+    <!-- Google Fonts: Outfit & Inter for premium typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome for nice iconography -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Leaflet Map Engine CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+    <!-- Leaflet Marker Cluster Plugin CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.4.1/dist/MarkerCluster.Default.css" />
+    
+    <!-- Custom Style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- TOP NAVIGATION BAR -->
+        <header class="app-header">
+            <a href="/" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 10px;">
+                <div class="header-logo" style="display: flex; align-items: center; gap: 10px;">
+                    <img src="{{ url_for('static', filename='images/logo.svg') }}" class="logo-image" style="height: 36px; width: 36px; border-radius: 6px; border: 1px solid rgba(0, 242, 254, 0.25); background: rgba(0, 0, 0, 0.2);" alt="Logo">
+                    <div class="logo-text">
+                        <h1>Rohit's Practical Demo</h1>
+                        <span>School Directory & Map</span>
+                    </div>
+                </div>
+            </a>
+            <!-- Mini Developer Info in Header -->
+            <div class="header-dev-badge" style="display: flex; align-items: center; gap: 8px; margin-left: 20px; border-left: 1px solid var(--border-glass); padding-left: 20px; font-family: 'Inter', sans-serif;">
+                <div style="text-align: left;">
+                    <div style="font-family: 'Outfit', sans-serif; font-size: 11px; font-weight: 700; color: var(--color-primary);">Rohit Jain</div>
+                    <div style="font-size: 8px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.3px;">Senior Full-Stack & AI Architect</div>
+                </div>
+            </div>
+            <div class="header-actions">
+                <!-- Text Scale accessibility controls -->
+                <div class="font-resizer-panel" style="display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.03); border: 1px solid var(--border-glass); border-radius: 6px; padding: 2px 6px;">
+                    <span style="font-size: 9px; color: var(--text-secondary); font-weight:700; margin-right: 4px; text-transform:uppercase; letter-spacing:0.5px;">Text</span>
+                    <button id="btnFontDec" class="btn-icon" title="Decrease Text Size" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:11px; padding: 2px 6px; transition: var(--transition-smooth);"><i class="fa-solid fa-minus"></i></button>
+                    <button id="btnFontInc" class="btn-icon" title="Increase Text Size" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:11px; padding: 2px 6px; transition: var(--transition-smooth);"><i class="fa-solid fa-plus"></i></button>
+                    <button id="btnFontReset" class="btn-icon" title="Reset Text Size" style="background:none; border:none; color:var(--text-secondary); cursor:pointer; font-size:10px; padding: 2px 6.5px; transition: var(--transition-smooth); margin-left: 2px; border-left: 1px solid rgba(255,255,255,0.08); padding-left: 6px;"><i class="fa-solid fa-arrows-rotate"></i></button>
+                </div>
+                <!-- Toggle Map Overlay panel -->
+                <button id="btnToggleLeftOverlay" class="btn btn-secondary btn-mini" title="Show/Hide Left Map Overlay" style="padding: 8px 12px; gap: 6px;">
+                    <i class="fa-solid fa-eye-slash"></i> Map Overlay
+                </button>
+                <!-- Toggle Sidebar panel -->
+                <button id="btnToggleSidebar" class="btn btn-secondary btn-mini" title="Show/Hide Details Sidebar" style="padding: 8px 12px; gap: 6px;">
+                    <i class="fa-solid fa-eye-slash"></i> Sidebar
+                </button>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="toggleBaseMap">
+                    <span class="toggle-slider"></span>
+                    <span class="toggle-label"><i class="fa-solid fa-layer-group"></i> Base Map Tiles</span>
+                </label>
+                <button id="btnUpcomingFeatures" class="btn btn-secondary" style="background: linear-gradient(135deg, rgba(0, 242, 254, 0.05), rgba(155, 81, 224, 0.05)); border-color: rgba(155, 81, 224, 0.25);">
+                    <i class="fa-solid fa-wand-magic-sparkles" style="color: var(--color-primary);"></i> Upcoming Features
+                </button>
+                <button id="btnAboutUs" class="btn btn-secondary">
+                    <i class="fa-solid fa-circle-info"></i> About Us
+                </button>
+            </div>
+        </header>
+
+        <!-- MAIN LAYOUT -->
+        <main class="dashboard-layout">
+            
+            <!-- LEFT: MAP AREA -->
+            <section class="map-section">
+                <div id="map-container">
+                    <!-- Left Floating Overlay Panel -->
+                    <div class="map-left-overlay">
+                        <!-- Card 1: Origin Reference -->
+                        <div class="overlay-card collapsible-card" id="cardOrigin">
+                            <div class="card-title collapsible-header" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                <span><i class="fa-solid fa-location-crosshairs"></i> Reference Origin</span>
+                                <i class="fa-solid fa-chevron-up collapse-chevron" style="font-size: 10px; transition: transform 0.3s ease;"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="origin-search-row">
+                                    <div class="autocomplete-wrapper" style="position: relative; flex: 1;">
+                                        <input type="text" id="originSearchInput" placeholder="Search address or district..." autocomplete="off">
+                                        <i class="fa-solid fa-circle-notch fa-spin search-loading-spinner hidden" id="searchSpinner" style="position: absolute; right: 12px; top: 10px; color: var(--color-primary); font-size: 12px; pointer-events: none; z-index: 10;"></i>
+                                        <ul id="originSuggestions" class="suggestions-list hidden"></ul>
+                                    </div>
+                                    <button id="btnOriginGeocode" title="Search Location"><i class="fa-solid fa-magnifying-glass"></i></button>
+                                </div>
+                                <div class="origin-btn-row">
+                                    <button id="btnUseGPS" class="btn btn-mini btn-secondary" title="Use current GPS location">
+                                        <i class="fa-solid fa-location-arrow"></i> GPS
+                                    </button>
+                                    <button id="btnPinOrigin" class="btn btn-mini btn-secondary" title="Click on map to pin origin">
+                                        <i class="fa-solid fa-map-pin"></i> Pin Map
+                                    </button>
+                                </div>
+                                <div class="origin-status">
+                                    <i class="fa-solid fa-location-dot"></i> <span id="lblOriginStatus">Center of Rajasthan</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2: Proximity Categories -->
+                        <div class="overlay-card collapsible-card" id="cardFilterDistance">
+                            <div class="card-title collapsible-header" style="cursor: pointer; display: flex; justify-content: space-between; align-items: center;">
+                                <span><i class="fa-solid fa-route"></i> Filter by Distance</span>
+                                <i class="fa-solid fa-chevron-up collapse-chevron" style="font-size: 10px; transition: transform 0.3s ease;"></i>
+                            </div>
+                            <div class="collapsible-content">
+                                <!-- Distance Range Slider (Dual Handle) -->
+                                <div class="distance-slider-wrapper" style="padding: 10px 0 16px 0; border-bottom: 1px dashed rgba(255,255,255,0.06); margin-bottom: 12px; font-family: 'Inter', sans-serif;">
+                                    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 11px; margin-bottom: 8px;">
+                                        <span style="color: var(--text-secondary); font-weight: 600;"><i class="fa-solid fa-sliders" style="color: var(--color-primary); margin-right: 4px;"></i> Distance Range:</span>
+                                        <span id="lblSliderValue" style="color: var(--color-primary); font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 12px; background: rgba(0,242,254,0.06); padding: 2px 6px; border-radius: 4px;">1 km - 5000 km</span>
+                                    </div>
+                                    <div class="dual-range-slider-container" style="position: relative; height: 20px; margin: 12px 0 8px 0;">
+                                        <div class="slider-track" style="position: absolute; height: 6px; background: rgba(255,255,255,0.1); border-radius: 4px; width: 100%; top: 50%; transform: translateY(-50%); z-index: 1;"></div>
+                                        <div class="slider-range-fill" id="sliderRangeFill" style="position: absolute; height: 6px; background: var(--color-primary); border-radius: 4px; top: 50%; transform: translateY(-50%); z-index: 2; left: 0%; right: 0%;"></div>
+                                        <input type="range" id="distanceMinSlider" min="1" max="5000" value="1" step="5" style="position: absolute; width: 100%; top: 50%; transform: translateY(-50%); background: none; pointer-events: none; -webkit-appearance: none; appearance: none; z-index: 3; margin: 0; outline: none; height: 6px;">
+                                        <input type="range" id="distanceMaxSlider" min="1" max="5000" value="5000" step="5" style="position: absolute; width: 100%; top: 50%; transform: translateY(-50%); background: none; pointer-events: none; -webkit-appearance: none; appearance: none; z-index: 3; margin: 0; outline: none; height: 6px;">
+                                    </div>
+                                    <div style="display: flex; justify-content: space-between; font-size: 8px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase;">
+                                        <span>1 km</span>
+                                        <span>2500 km</span>
+                                        <span>5000 km</span>
+                                    </div>
+                                </div>
+                                <div class="category-list">
+                                    <div class="category-item" data-range="immediate">
+                                        <span class="color-indicator immediate"></span>
+                                        <span class="range-lbl">Immediate (&lt; 10 km)</span>
+                                        <span class="badge-count-dark" id="countImmediate">0</span>
+                                    </div>
+                                    <div class="category-item" data-range="near">
+                                        <span class="color-indicator near"></span>
+                                        <span class="range-lbl">Near (10 - 25 km)</span>
+                                        <span class="badge-count-dark" id="countNear">0</span>
+                                    </div>
+                                    <div class="category-item" data-range="mid">
+                                        <span class="color-indicator mid"></span>
+                                        <span class="range-lbl">Mid-Range (25 - 50 km)</span>
+                                        <span class="badge-count-dark" id="countMid">0</span>
+                                    </div>
+                                    <div class="category-item" data-range="distant">
+                                        <span class="color-indicator distant"></span>
+                                        <span class="range-lbl">Distant (50 - 100 km)</span>
+                                        <span class="badge-count-dark" id="countDistant">0</span>
+                                    </div>
+                                    <div class="category-item" data-range="far">
+                                        <span class="color-indicator far"></span>
+                                        <span class="range-lbl">Far (&gt; 100 km)</span>
+                                        <span class="badge-count-dark" id="countFar">0</span>
+                                    </div>
+                                </div>
+                                <div class="filter-reset hidden" id="divResetFilter">
+                                    <button id="btnResetProximityFilter" class="btn btn-mini btn-primary" style="width: 100%; justify-content: center; font-size: 11px; padding: 6px;">
+                                        <i class="fa-solid fa-arrows-rotate"></i> Clear Distance Filter
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div id="map"></div>
+                    <div id="map-loading-overlay" class="map-overlay-loader">
+                        <div class="spinner"></div>
+                        <p>Loading Map Boundaries...</p>
+                    </div>
+                </div>
+                <!-- Database source/warning banner -->
+                <div id="db-status-banner" class="db-status-banner hidden">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span id="db-status-text">Using mock fallback data.</span>
+                </div>
+            </section>
+
+            <!-- RIGHT: SIDEBAR STATS & DIRECTORY -->
+            <section class="sidebar-section">
+                
+                <!-- Quick Stats Summary -->
+                <div class="stats-grid">
+                    <div class="stats-card" id="cardTotalSchools">
+                        <div class="skeleton-loader-card">
+                            <div class="sk-circle"></div>
+                            <div class="sk-line long"></div>
+                            <div class="sk-line short"></div>
+                        </div>
+                        <div class="card-content hidden">
+                            <div class="card-icon"><i class="fa-solid fa-school"></i></div>
+                            <div class="card-info">
+                                <h3>Total Schools</h3>
+                                <p id="valTotalSchools">0</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="stats-card" id="cardTotalDistricts">
+                        <div class="skeleton-loader-card">
+                            <div class="sk-circle"></div>
+                            <div class="sk-line long"></div>
+                            <div class="sk-line short"></div>
+                        </div>
+                        <div class="card-content hidden">
+                            <div class="card-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+                            <div class="card-info">
+                                <h3>Districts</h3>
+                                <p id="valTotalDistricts">0</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Interactive Search & Panels -->
+                <div class="panel-card">
+                    <div class="panel-header">
+                        <div class="search-wrapper">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="searchInput" placeholder="Search school or district...">
+                        </div>
+                    </div>
+                    
+                    <!-- Tabs Navigation -->
+                    <div class="tabs-nav">
+                        <button class="tab-btn active" data-tab="tabDistricts">
+                            <i class="fa-solid fa-chart-pie"></i> District Counts
+                        </button>
+                        <button class="tab-btn" data-tab="tabSchools">
+                            <i class="fa-solid fa-list"></i> School Details
+                        </button>
+                    </div>
+
+                    <!-- Tab Contents -->
+                    <div class="tab-content-container">
+                        
+                        <!-- TAB 1: DISTRICT SUMMARIES -->
+                        <div class="tab-pane active" id="tabDistricts">
+                            <div class="table-scroll-container">
+                                <table id="tableDistricts" class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>District Name</th>
+                                            <th class="text-right">Schools Count</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Skeleton Rows -->
+                                        <tr class="skeleton-row"><td><div class="sk-text"></div></td><td><div class="sk-text short text-right"></div></td></tr>
+                                        <tr class="skeleton-row"><td><div class="sk-text"></div></td><td><div class="sk-text short text-right"></div></td></tr>
+                                        <tr class="skeleton-row"><td><div class="sk-text"></div></td><td><div class="sk-text short text-right"></div></td></tr>
+                                        <tr class="skeleton-row"><td><div class="sk-text"></div></td><td><div class="sk-text short text-right"></div></td></tr>
+                                        <tr class="skeleton-row"><td><div class="sk-text"></div></td><td><div class="sk-text short text-right"></div></td></tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <!-- TAB 2: DETAILED SCHOOL LIST -->
+                        <div class="tab-pane" id="tabSchools">
+                            <!-- Detailed Selected School Profile Card -->
+                            <div id="school-detail-card" class="school-detail-card hidden">
+                                <div class="card-close-btn" id="detailCardCloseBtn">&times;</div>
+                                <h4 id="detailSchoolName">School Name</h4>
+                                <div class="detail-grid">
+                                    <div class="detail-item">
+                                        <i class="fa-solid fa-map-location-dot"></i>
+                                        <span><b>District:</b> <span id="detailDistrict"></span></span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fa-solid fa-landmark"></i>
+                                        <span><b>Capital:</b> <span id="detailCapital"></span></span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fa-solid fa-users"></i>
+                                        <span><b>Students:</b> <span id="detailStudents"></span></span>
+                                    </div>
+                                    <div class="detail-item">
+                                        <i class="fa-solid fa-user-tie"></i>
+                                        <span><b>Teachers:</b> <span id="detailTeachers"></span></span>
+                                    </div>
+                                    <div class="detail-item" id="detailCenterCodeItem">
+                                        <i class="fa-solid fa-hashtag" style="color: var(--color-primary);"></i>
+                                        <span><b>Center Code:</b> <span id="detailCenterCode"></span></span>
+                                    </div>
+                                    <div class="detail-item" id="detailDistanceItem" style="display: none;">
+                                        <i class="fa-solid fa-route"></i>
+                                        <span><b>Distance:</b> <span id="detailDistance"></span></span>
+                                    </div>
+                                    <div class="detail-item" style="grid-column: span 2;">
+                                        <i class="fa-solid fa-location-crosshairs"></i>
+                                        <span><b>Coordinates:</b> <span id="detailCoords"></span></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="table-scroll-container">
+                                <table id="tableSchools" class="data-table">
+                                    <thead>
+                                        <tr>
+                                            <th>School Name</th>
+                                            <th>District</th>
+                                            <th>Lat & Long</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- Skeleton Rows -->
+                                        <tr class="skeleton-row">
+                                            <td><div class="sk-text"></div></td>
+                                            <td><div class="sk-text short"></div></td>
+                                            <td><div class="sk-text"></div></td>
+                                        </tr>
+                                        <tr class="skeleton-row">
+                                            <td><div class="sk-text"></div></td>
+                                            <td><div class="sk-text short"></div></td>
+                                            <td><div class="sk-text"></div></td>
+                                        </tr>
+                                        <tr class="skeleton-row">
+                                            <td><div class="sk-text"></div></td>
+                                            <td><div class="sk-text short"></div></td>
+                                            <td><div class="sk-text"></div></td>
+                                        </tr>
+                                        <tr class="skeleton-row">
+                                            <td><div class="sk-text"></div></td>
+                                            <td><div class="sk-text short"></div></td>
+                                            <td><div class="sk-text"></div></td>
+                                        </tr>
+                                        <tr class="skeleton-row">
+                                            <td><div class="sk-text"></div></td>
+                                            <td><div class="sk-text short"></div></td>
+                                            <td><div class="sk-text"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                
+                <!-- Developer Details Footer inside Sidebar -->
+                <div class="sidebar-footer" style="margin-top: auto; padding-top: 16px; border-top: 1px solid var(--border-glass); font-family: 'Inter', sans-serif; display: flex; flex-direction: column; gap: 8px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <h4 style="margin: 0; font-family: 'Outfit', sans-serif; font-size: 13px; font-weight: 700; color: var(--color-primary);">Rohit Jain</h4>
+                            <p style="margin: 2px 0 0 0; font-size: 10px; color: var(--text-muted); line-height: 1.3;">Senior Full-Stack Developer | AI Architect</p>
+                        </div>
+                        <span style="font-size: 9px; color: var(--text-muted); background: rgba(255,255,255,0.04); padding: 2px 6px; border-radius: 4px; white-space: nowrap;"><i class="fa-solid fa-location-dot"></i> Jaipur, RJ</span>
+                    </div>
+                    
+                    <div style="display: flex; justify-content: space-between; margin: 6px 0; background: rgba(0,242,254,0.02); border: 1px solid rgba(0,242,254,0.06); padding: 6px 10px; border-radius: 6px; text-align: center;">
+                        <div style="flex: 1;">
+                            <div style="font-family: 'Outfit', sans-serif; font-size: 11px; font-weight:700; color: var(--color-primary);">9+</div>
+                            <div style="font-size: 8px; color: var(--text-muted);">Years Exp</div>
+                        </div>
+                        <div style="flex: 1; border-left: 1px solid rgba(255,255,255,0.05); border-right: 1px solid rgba(255,255,255,0.05);">
+                            <div style="font-family: 'Outfit', sans-serif; font-size: 11px; font-weight:700; color: var(--color-secondary);">100K+</div>
+                            <div style="font-size: 8px; color: var(--text-muted);">Users</div>
+                        </div>
+                        <div style="flex: 1;">
+                            <div style="font-family: 'Outfit', sans-serif; font-size: 11px; font-weight:700; color: var(--color-primary);">50K+</div>
+                            <div style="font-size: 8px; color: var(--text-muted);">Daily APIs</div>
+                        </div>
+                    </div>
+                    
+                    <div style="display: flex; flex-direction: column; gap: 4px; font-size: 10px; color: var(--text-secondary); margin-bottom: 4px; text-align: left;">
+                        <div><i class="fa-solid fa-phone" style="width: 14px; color: var(--color-primary);"></i> <a href="tel:+918946919241" style="color: inherit; text-decoration: none;">+91 89469 19241</a></div>
+                        <div><i class="fa-solid fa-envelope" style="width: 14px; color: var(--color-secondary);"></i> <a href="mailto:engrohitjain5@gmail.com" style="color: inherit; text-decoration: none;">engrohitjain5@gmail.com</a></div>
+                    </div>
+                    
+                    <div style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 10px; border-top: 1px dashed rgba(255,255,255,0.05); padding-top: 8px;">
+                        <a href="https://github.com/engrohitjain" target="_blank" style="color: var(--color-primary); text-decoration: none; display: flex; align-items: center; gap: 4px;"><i class="fa-brands fa-github"></i> GitHub</a>
+                        <a href="https://linkedin.com/in/engrohitjain" target="_blank" style="color: var(--color-secondary); text-decoration: none; display: flex; align-items: center; gap: 4px;"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                        <a href="https://huggingface.co/engrohitjain" target="_blank" style="color: var(--color-primary); text-decoration: none; display: flex; align-items: center; gap: 4px;"><i class="fa-solid fa-cubes"></i> HF Spaces</a>
+                        <a href="https://rohitjain-resume.vercel.app/" target="_blank" style="color: var(--text-primary); text-decoration: none; display: flex; align-items: center; gap: 4px; background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; margin-left: auto;"><i class="fa-solid fa-file-arrow-down"></i> Download CV</a>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- ABOUT US MODAL POPUP -->
+    <div id="aboutModal" class="modal-backdrop">
+        <div class="modal-card">
+            <div class="modal-header">
+                <h2>About Geospatial Practice Project</h2>
+                <button class="modal-close-btn" id="modalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="about-us-container">
+                    <!-- Left Column: Bio, Contact, Stats, Skills -->
+                    <div class="about-left-col">
+                        <div class="dev-profile-header">
+                            <div class="dev-profile-avatar">
+                                <i class="fa-solid fa-user-tie"></i>
+                            </div>
+                            <h3>Rohit Jain</h3>
+                            <p class="dev-tagline">Senior Full-Stack Developer | AI Automation Architect</p>
+                            <p class="dev-loc"><i class="fa-solid fa-map-pin"></i> Jaipur, Rajasthan</p>
+                        </div>
+                        
+                        <div class="dev-contact-info">
+                            <div class="contact-item"><i class="fa-solid fa-phone"></i> +91 89469 19241</div>
+                            <div class="contact-item"><i class="fa-solid fa-envelope"></i> engrohitjain5@gmail.com</div>
+                        </div>
+
+                        <div class="dev-links-grid">
+                            <a href="https://github.com/shuklaneerajdev" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a>
+                            <a href="https://linkedin.com" target="_blank"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
+                            <a href="https://huggingface.co" target="_blank"><i class="fa-solid fa-cubes"></i> HF Spaces</a>
+                            <a href="https://rohitjain-resume.vercel.app/" target="_blank" class="btn-cv"><i class="fa-solid fa-file-pdf"></i> Download CV</a>
+                        </div>
+
+                        <div class="dev-stats-row">
+                            <div class="stat-box">
+                                <div class="stat-num">9+</div>
+                                <div class="stat-lbl">Years Exp</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-num">100K+</div>
+                                <div class="stat-lbl">Users</div>
+                            </div>
+                            <div class="stat-box">
+                                <div class="stat-num">50K+</div>
+                                <div class="stat-lbl">Daily APIs</div>
+                            </div>
+                        </div>
+                        
+                        <div class="dev-skills-section">
+                            <h4>Technical Expertise</h4>
+                            <div class="skills-category">
+                                <h5>AI & LLM</h5>
+                                <div class="skills-tags">
+                                    <span>Ollama</span><span>Gemini API</span><span>Claude</span><span>n8n</span><span>Agentic Workflows</span>
+                                </div>
+                            </div>
+                            <div class="skills-category">
+                                <h5>Backend</h5>
+                                <div class="skills-tags">
+                                    <span>PHP (Laravel/CakePHP)</span><span>Python</span><span>.NET Core API</span><span>REST/SOAP</span>
+                                </div>
+                            </div>
+                            <div class="skills-category">
+                                <h5>Database</h5>
+                                <div class="skills-tags">
+                                    <span>MySQL</span><span>MSSQL</span><span>Stored Procedures</span>
+                                </div>
+                            </div>
+                            <div class="skills-category">
+                                <h5>BI & DevOps</h5>
+                                <div class="skills-tags">
+                                    <span>Pentaho</span><span>Tableau</span><span>Git</span><span>Docker</span><span>IIS</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Summary, Timeline -->
+                    <div class="about-right-col">
+                        <div class="summary-quote">
+                            <p>"Bridging the gap between legacy enterprise systems and modern AI automation."</p>
+                        </div>
+
+                        <div class="summary-text">
+                            <p><strong>Architecting Intelligent Systems.</strong> Results-driven Full-Stack Developer and AI Automation Architect with 9+ years of experience delivering high-impact government portals and enterprise systems serving 100,000+ users. Proven track record of cutting result generation time by 50% via optimized stored procedures.</p>
+                        </div>
+
+                        <div class="current-pilot">
+                            <span class="pilot-badge"><i class="fa-solid fa-rocket"></i> Currently Piloting</span>
+                            <p>Agentic AI & .NET Core</p>
+                        </div>
+
+                        <div class="timeline-section">
+                            <h4>Professional Milestones</h4>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <span class="timeline-date">April 2024 – Present</span>
+                                    <h5 class="timeline-role">Senior Software Developer</h5>
+                                    <span class="timeline-company">Data Ingenious Global Limited</span>
+                                    <ul>
+                                        <li>Lead Laravel Developer for State Open School Dual-Stream & On-Demand Admission Portal.</li>
+                                        <li>Architected full SDLC for a platform serving 100,000+ candidates.</li>
+                                        <li>Engineered automated seat-allotment modules, cutting processing time by 40%.</li>
+                                        <li>Implemented RBAC for 15+ user roles, achieving zero unauthorized access.</li>
+                                        <li>Deployed Ollama/Gemini/Claude reducing reviews by 30% and debugging by 25%.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="timeline-date">Feb 2020 – April 2024</span>
+                                    <h5 class="timeline-role">Software Developer</h5>
+                                    <span class="timeline-company">DevIT Solutions Pvt. Ltd.</span>
+                                    <ul>
+                                        <li>Delivered large-scale government portals serving 50,000+ daily users in Rajasthan.</li>
+                                        <li>Secured E-Court API integrations using AES encryption and tokens.</li>
+                                        <li>Reduced exam result-generation time by 50% via optimized MySQL stored procedures.</li>
+                                        <li>Built Paramedical Council seat-matrix algorithms with 99.9% accuracy.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="timeline-date">Oct 2017 – Jan 2020</span>
+                                    <h5 class="timeline-role">Software Developer</h5>
+                                    <span class="timeline-company">Akal Information Systems Ltd.</span>
+                                    <ul>
+                                        <li>Developed web applications for government and corporate clients.</li>
+                                        <li>Contributed to complex API integrations and database optimizations.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="timeline-date">Aug 2016 – Oct 2017</span>
+                                    <h5 class="timeline-role">Junior Software Developer</h5>
+                                    <span class="timeline-company">Vertex Plus Software Pvt. Ltd.</span>
+                                    <ul>
+                                        <li>Built responsive web applications and client portals using PHP and Bootstrap.</li>
+                                    </ul>
+                                </div>
+                                <div class="timeline-item">
+                                    <span class="timeline-date">Dec 2015 – Aug 2016</span>
+                                    <h5 class="timeline-role">Junior Developer</h5>
+                                    <span class="timeline-company">On-Graph Technologies Pvt. Ltd.</span>
+                                    <ul>
+                                        <li>CMS-driven websites and integrated notification systems.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid var(--border-glass); padding-top: 15px; margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 10px; color: var(--text-muted);">© 2026 Developed for Rohit Jain. Engineered with AI Precision.</span>
+                    <button id="modalCloseOkBtn" class="btn btn-primary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- UPCOMING FEATURES MODAL POPUP -->
+    <div id="upcomingModal" class="modal-backdrop">
+        <div class="modal-card" style="max-width: 620px !important;">
+            <div class="modal-header">
+                <h2><i class="fa-solid fa-wand-magic-sparkles" style="color: var(--color-primary); margin-right: 8px;"></i> AI Next Steps Roadmap</h2>
+                <button class="modal-close-btn" id="upcomingModalCloseBtn">&times;</button>
+            </div>
+            <div class="modal-body" style="padding: 20px 24px;">
+                <!-- Language Toggle Switcher -->
+                <div class="modal-lang-toggle" style="display: flex; justify-content: center; gap: 8px; margin-bottom: 20px;">
+                    <button class="modal-tab-btn active" data-lang="en" style="border: 1px solid var(--border-glass); border-radius: 4px; padding: 6px 16px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif; color: var(--text-primary); background: rgba(255,255,255,0.06);">English</button>
+                    <button class="modal-tab-btn" data-lang="hi" style="border: 1px solid var(--border-glass); border-radius: 4px; padding: 6px 16px; font-size: 11px; font-weight: 700; cursor: pointer; transition: all 0.3s; font-family: 'Inter', sans-serif; color: var(--text-muted); background: none;">हिन्दी</button>
+                </div>
+
+                <!-- ENGLISH CONTENT -->
+                <div id="lang-en" style="display: block;">
+                    <div class="about-hero" style="text-align: center; margin-bottom: 20px; background: none; border: none; padding: 0;">
+                        <i class="fa-solid fa-brain about-logo-icon" style="color: var(--color-secondary); font-size: 44px; filter: drop-shadow(0 0 10px rgba(155,81,224,0.4)); display: block; margin: 0 auto 10px auto;"></i>
+                        <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 800; color: var(--text-primary); margin: 0 0 4px 0;">Harnessing the Power of AI</h3>
+                        <p style="font-size: 11px; color: var(--text-secondary); margin: 0;">Future Roadmap for Geospatial & Administrative Intelligence</p>
+                    </div>
+                    <div class="modal-text-content" style="font-size: 13px; line-height: 1.6; color: var(--text-secondary);">
+                        <p style="margin-bottom: 16px;">
+                            This interactive geospatial mapping app serves as a prototype core. By integrating <strong>Agentic AI</strong> workflows and **Large Language Models (LLMs)**, we can unlock the following upcoming capabilities:
+                        </p>
+                        
+                        <ul style="list-style: none; padding-left: 0; margin: 0;">
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-robot" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>Natural Language Map Querying (NL-GIS)</strong>: Type simple requests like *"Show me all schools with &gt; 250 students in Jaipur or Ajmer within 25 km of the custom pin"* and AI will instantly parse the intent, execute the spatial queries, and focus the Leaflet views.
+                            </li>
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-route" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>Agentic Proximity travel Optimizer</strong>: Run background AI planners (n8n or LangChain) that query local transport databases to recommend safest, shortest, and most cost-effective travel pathways for student commutes.
+                            </li>
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-chart-line" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>Predictive Infrastructure Allocation</strong>: Train regression ML algorithms to model future enrollment surges using regional census data—proactively highlighting geographic sectors that will require new facilities.
+                            </li>
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-triangle-exclamation" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>Underserved Region Cluster Detection</strong>: Apply density clustering algorithms (like DBSCAN) to discover school deserts—unmasking remote rural sectors where travel distance to the nearest center exceeds acceptable safety margins.
+                            </li>
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-microphone" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>Speech-to-Map Navigation</strong>: Integrate speech-to-text models that translate verbal coordinates and filter commands, letting administrative operators navigate the GIS screen completely hands-free.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- HINDI CONTENT -->
+                <div id="lang-hi" style="display: none;">
+                    <div class="about-hero" style="text-align: center; margin-bottom: 20px; background: none; border: none; padding: 0;">
+                        <i class="fa-solid fa-brain about-logo-icon" style="color: var(--color-secondary); font-size: 44px; filter: drop-shadow(0 0 10px rgba(155,81,224,0.4)); display: block; margin: 0 auto 10px auto;"></i>
+                        <h3 style="font-family: var(--font-heading); font-size: 18px; font-weight: 800; color: var(--text-primary); margin: 0 0 4px 0;">एआई की शक्ति का उपयोग</h3>
+                        <p style="font-size: 11px; color: var(--text-secondary); margin: 0;">भू-स्थानिक और प्रशासनिक बुद्धिमत्ता के लिए भविष्य का रोडमैप</p>
+                    </div>
+                    <div class="modal-text-content" style="font-size: 13px; line-height: 1.6; color: var(--text-secondary); font-family: 'Inter', 'Noto Sans Devanagari', sans-serif;">
+                        <p style="margin-bottom: 16px;">
+                            यह इंटरैक्टिव भू-स्थानिक मानचित्रण ऐप एक प्रोटोटाइप कोर के रूप में कार्य करता है। <strong>एजेंटिक एआई (Agentic AI)</strong> वर्कफ़्लो और <strong>लार्ज लैंग्वेज मॉडल (LLMs)</strong> को एकीकृत करके, हम निम्नलिखित आगामी क्षमताओं को अनलॉक कर सकते हैं:
+                        </p>
+                        
+                        <ul style="list-style: none; padding-left: 0; margin: 0;">
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-robot" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>प्राकृतिक भाषा मानचित्र पूछताछ (NL-GIS)</strong>: सरल अनुरोध टाइप करें जैसे *"मुझे जयपुर या अजमेर में कस्टम पिन के 25 किमी के भीतर &gt; 250 छात्रों वाले सभी स्कूल दिखाएं"* और एआई तुरंत इरादे को पार्स करेगा, स्थानिक प्रश्नों को निष्पादित करेगा, और लीफलेट दृश्यों को केंद्रित करेगा।
+                            </li>
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-route" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>एजेंटिक निकटता यात्रा अनुकूलक (Travel Optimizer)</strong>: पृष्ठभूमि एआई योजनाकार (n8n या LangChain) चलाएं जो छात्रों के आवागमन के लिए सबसे सुरक्षित, सबसे छोटे और सबसे अधिक लागत प्रभावी यात्रा मार्गों की सिफारिश करने के लिए स्थानीय परिवहन डेटाबेस से पूछताछ करते हैं।
+                            </li>
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-chart-line" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>पूर्वानुमानित बुनियादी ढांचा आवंटन</strong>: क्षेत्रीय जनगणना डेटा का उपयोग करके भविष्य में नामांकन में वृद्धि को मॉडल करने के लिए प्रतिगमन एमएल (ML) एल्गोरिदम को प्रशिक्षित करें—सक्रिय रूप से उन भौगोलिक क्षेत्रों को उजागर करें जिन्हें नई सुविधाओं की आवश्यकता होगी।
+                            </li>
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-triangle-exclamation" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>कम सेवा वाले क्षेत्र समूह का पता लगाना</strong>: स्कूल रेगिस्तानों की खोज के लिए घनत्व क्लस्टरिंग एल्गोरिदम (जैसे डीबीएससीएएन) लागू करें—दूरदराज के ग्रामीण क्षेत्रों को बेनकाब करना जहां निकटतम केंद्र की यात्रा दूरी स्वीकार्य सुरक्षा सीमाओं से अधिक है।
+                            </li>
+                            <li style="margin-bottom: 14px; position: relative; padding-left: 28px;">
+                                <i class="fa-solid fa-microphone" style="position: absolute; left: 0; top: 3px; color: var(--color-primary); font-size: 14px;"></i>
+                                <strong>स्पीच-टू-मैप नेविगेशन</strong>: स्पीच-टू-टेक्स्ट मॉडल को एकीकृत करें जो मौखिक निर्देशांक और फ़िल्टर कमांड का अनुवाद करते हैं, जिससे प्रशासनिक ऑपरेटरों को पूरी तरह से हैंड्स-फ्री जीआईएस स्क्रीन पर नेविगेट करने की अनुमति मिलती है।
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="modal-footer" style="border-top: 1px solid var(--border-glass); padding-top: 15px; margin-top: 20px; display: flex; justify-content: flex-end;">
+                    <button id="upcomingModalCloseOkBtn" class="btn btn-secondary">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet.js Map Engine Script -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+    <!-- Leaflet Marker Cluster Plugin Script -->
+    <script src="https://unpkg.com/leaflet.markercluster@1.4.1/dist/leaflet.markercluster.js"></script>
+
+    <!-- Custom Frontend Application Script -->
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
