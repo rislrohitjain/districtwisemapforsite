@@ -1,5 +1,8 @@
 from flask import Flask, render_template, jsonify
+import os
 import pymysql
+import redis
+import json
 from decimal import Decimal
 import logging
 from config import Config
@@ -33,6 +36,63 @@ MOCK_SCHOOLS = [
 def get_db_connection():
     return pymysql.connect(**app.config['DB_CONFIG'])
 
+def get_redis_connection():
+    if not app.config.get('REDIS_HOST'):
+        return None
+    return redis.Redis(
+        host=app.config['REDIS_HOST'],
+        port=app.config['REDIS_PORT'],
+        password=app.config['REDIS_PASSWORD'],
+        decode_responses=True,
+        socket_timeout=5
+    )
+
+def seed_mysql_database_if_empty(conn):
+    try:
+        with conn.cursor() as cursor:
+            # 1. Create table inside existing database if missing (no CREATE DATABASE required)
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS schools (
+                    id INT AUTO_INCREMENT PRIMARY KEY,
+                    name VARCHAR(255) NOT NULL,
+                    district VARCHAR(100) NOT NULL,
+                    latitude DECIMAL(10, 8) NOT NULL,
+                    longitude DECIMAL(11, 8) NOT NULL,
+                    center_code VARCHAR(50)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+            """)
+            conn.commit()
+            
+            # 2. Check if empty
+            cursor.execute("SELECT COUNT(*) FROM schools")
+            count = cursor.fetchone()[0]
+            
+            if count == 0:
+                logger.info("MySQL database is empty. Seeding from local schools_seed.json...")
+                seed_file = os.path.join(app.root_path, 'static', 'data', 'schools_seed.json')
+                if os.path.exists(seed_file):
+                    with open(seed_file, 'r', encoding='utf-8') as f:
+                        seed_data = json.load(f)
+                    
+                    schools_list = seed_data.get("schools", [])
+                    if schools_list:
+                        prepared_records = []
+                        for s in schools_list:
+                            prepared_records.append((
+                                s["name"],
+                                s["district"],
+                                s["latitude"],
+                                s["longitude"],
+                                s["center_code"]
+                            ))
+                        
+                        sql = "INSERT INTO schools (name, district, latitude, longitude, center_code) VALUES (%s, %s, %s, %s, %s)"
+                        cursor.executemany(sql, prepared_records)
+                        conn.commit()
+                        logger.info(f"Successfully seeded {len(schools_list)} schools into cloud MySQL.")
+    except Exception as e:
+        logger.error(f"Auto-seeding MySQL failed: {e}")
+
 @app.route('/')
 def index():
     # Renders the dashboard page (no Maps key parameter required)
@@ -40,8 +100,27 @@ def index():
 
 @app.route('/api/schools')
 def api_schools():
+    # 1. Try Redis KV Store First
+    try:
+        r = get_redis_connection()
+        if r:
+            schools_json = r.get('schools')
+            if schools_json:
+                schools = json.loads(schools_json)
+                return jsonify({
+                    "status": "success",
+                    "data": schools,
+                    "source": "redis_kv"
+                })
+    except Exception as e:
+        logger.warning(f"Redis fetch failed: {e}. Falling back to MySQL.")
+
+    # 2. Try MySQL Database Second
     try:
         conn = get_db_connection()
+        # Seed database tables and 150 schools if empty
+        seed_mysql_database_if_empty(conn)
+        
         with conn.cursor(pymysql.cursors.DictCursor) as cursor:
             cursor.execute("SELECT id, name, district, latitude, longitude, center_code FROM schools")
             schools = cursor.fetchall()
@@ -71,6 +150,22 @@ def api_schools():
 
 @app.route('/api/stats')
 def api_stats():
+    # 1. Try Redis KV Store First
+    try:
+        r = get_redis_connection()
+        if r:
+            stats_json = r.get('stats')
+            if stats_json:
+                stats = json.loads(stats_json)
+                return jsonify({
+                    "status": "success",
+                    "data": stats,
+                    "source": "redis_kv"
+                })
+    except Exception as e:
+        logger.warning(f"Redis stats fetch failed: {e}. Falling back to MySQL.")
+
+    # 2. Try MySQL Database Second
     try:
         conn = get_db_connection()
         with conn.cursor(pymysql.cursors.DictCursor) as cursor:

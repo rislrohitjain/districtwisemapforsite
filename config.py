@@ -14,3 +14,8 @@ class Config:
         'charset': 'utf8mb4',
         'connect_timeout': 10
     }
+
+    # Redis (MateriaKV) Configuration
+    REDIS_HOST = os.environ.get('REDIS_HOST')
+    REDIS_PORT = int(os.environ.get('REDIS_PORT', 6379))
+    REDIS_PASSWORD = os.environ.get('REDIS_PASSWORD')

@@ -1,0 +1,1382 @@
+{
+  "schools": [
+    {
+      "id": 1,
+      "name": "Govt. Senior Sec. School,Topadada,Ajmer (Nodal Kendra)",
+      "district": "Ajmer",
+      "latitude": 26.44689847,
+      "longitude": 74.67564158,
+      "center_code": "g6350"
+    },
+    {
+      "id": 2,
+      "name": "Govt. Javahar Senior Sec. School, Ajmer",
+      "district": "Ajmer",
+      "latitude": 26.41450064,
+      "longitude": 74.65018692,
+      "center_code": "c1324"
+    },
+    {
+      "id": 3,
+      "name": "Savitri Govt. Girls Senior Sec. School,Ajmer",
+      "district": "Ajmer",
+      "latitude": 26.46170176,
+      "longitude": 74.63377537,
+      "center_code": "w6330"
+    },
+    {
+      "id": 4,
+      "name": "Govt. Kendriya Balika Senior Sec. School,Purani Mandi, Ajmer",
+      "district": "Ajmer",
+      "latitude": 26.48144004,
+      "longitude": 74.64954425,
+      "center_code": "f7013"
+    },
+    {
+      "id": 5,
+      "name": "Govt. Vyaparik Senior Sec. School,Nasirabad, (Ajmer)",
+      "district": "Ajmer",
+      "latitude": 26.43766689,
+      "longitude": 74.65279006,
+      "center_code": "b1678"
+    },
+    {
+      "id": 6,
+      "name": "Govt. Senior Sec. School, Kishangarh, (Ajmer)",
+      "district": "Ajmer",
+      "latitude": 26.48559306,
+      "longitude": 74.65050142,
+      "center_code": "z2949"
+    },
+    {
+      "id": 7,
+      "name": "Govt. Senior Sec. School, Arai (Ajmer)",
+      "district": "Ajmer",
+      "latitude": 26.46055052,
+      "longitude": 74.65097098,
+      "center_code": "m9689"
+    },
+    {
+      "id": 8,
+      "name": "Govt. Patel Senior Sec. School, Beawer, (Ajmer)",
+      "district": "Ajmer",
+      "latitude": 26.44822929,
+      "longitude": 74.60812558,
+      "center_code": "j1874"
+    },
+    {
+      "id": 9,
+      "name": "Govt. Senior Sec. School, Jawaja (Ajmer)",
+      "district": "Ajmer",
+      "latitude": 26.42415115,
+      "longitude": 74.62870143,
+      "center_code": "c3926"
+    },
+    {
+      "id": 10,
+      "name": "Govt. Senior Sec. School, Pisangan (Ajmer)",
+      "district": "Ajmer",
+      "latitude": 26.50990847,
+      "longitude": 74.60028537,
+      "center_code": "j1936"
+    },
+    {
+      "id": 11,
+      "name": "Govt. S. K. M. K. Senior Sec. School Nagelav, Tah. Pisangan, Ajmer",
+      "district": "Ajmer",
+      "latitude": 26.42221483,
+      "longitude": 74.64963353,
+      "center_code": "j2022"
+    },
+    {
+      "id": 12,
+      "name": "Govt. Senior Sec. School, Shrinagar (Ajmer)",
+      "district": "Ajmer",
+      "latitude": 26.41127169,
+      "longitude": 74.6211446,
+      "center_code": "k6934"
+    },
+    {
+      "id": 13,
+      "name": "Govt. Girls Senior Sec. School, Kishangarh, Ajmer",
+      "district": "Ajmer",
+      "latitude": 26.42311218,
+      "longitude": 74.5964657,
+      "center_code": "j9175"
+    },
+    {
+      "id": 14,
+      "name": "Govt. Jain Gurukul Senior Sec. School,Beawer, Ajmer",
+      "district": "Ajmer",
+      "latitude": 26.48566238,
+      "longitude": 74.68184232,
+      "center_code": "b8361"
+    },
+    {
+      "id": 15,
+      "name": "Govt. Girls Senior Sec. School,Adarsh Nagar, Ajmer",
+      "district": "Ajmer",
+      "latitude": 26.4244612,
+      "longitude": 74.66997276,
+      "center_code": "d8405"
+    },
+    {
+      "id": 16,
+      "name": "MAHATMA GANDHI GOVT.SCHOOL JAWAJA AJMER",
+      "district": "Ajmer",
+      "latitude": 26.49602997,
+      "longitude": 74.67266183,
+      "center_code": "k7543"
+    },
+    {
+      "id": 17,
+      "name": "Govt.sec.sr.School Narwar Ajmer",
+      "district": "Ajmer",
+      "latitude": 26.44787965,
+      "longitude": 74.59182937,
+      "center_code": "v7320"
+    },
+    {
+      "id": 18,
+      "name": "Govt. Yashavant Senior Sec. School, Alwar",
+      "district": "Alwar",
+      "latitude": 27.36540281,
+      "longitude": 76.60179988,
+      "center_code": "n8637"
+    },
+    {
+      "id": 19,
+      "name": "Govt. Naveen Senior Sec. School,Alwar (Nodal Kendra)",
+      "district": "Alwar",
+      "latitude": 27.4515212,
+      "longitude": 76.658288,
+      "center_code": "z2691"
+    },
+    {
+      "id": 20,
+      "name": "Govt. Girls Senior Sec. School, Alwar",
+      "district": "Alwar",
+      "latitude": 27.41163083,
+      "longitude": 76.58974753,
+      "center_code": "z2678"
+    },
+    {
+      "id": 21,
+      "name": "GSSS RAMGARH",
+      "district": "Alwar",
+      "latitude": 27.39479532,
+      "longitude": 76.65367977,
+      "center_code": "s7387"
+    },
+    {
+      "id": 22,
+      "name": "Govt. Senior Sec. School, Bansur, Alwar",
+      "district": "Alwar",
+      "latitude": 27.41642493,
+      "longitude": 76.66993048,
+      "center_code": "d3024"
+    },
+    {
+      "id": 23,
+      "name": "Govt. Senior Sec. School, Malakheda, Alwar",
+      "district": "Alwar",
+      "latitude": 27.42936945,
+      "longitude": 76.66410362,
+      "center_code": "e4548"
+    },
+    {
+      "id": 24,
+      "name": "Govt. Senior Sec. School, Baharor, Alwar",
+      "district": "Alwar",
+      "latitude": 27.4717565,
+      "longitude": 76.55915093,
+      "center_code": "o6216"
+    },
+    {
+      "id": 25,
+      "name": "Govt. Girls Senior Sec. School, Baharor, Alwar",
+      "district": "Alwar",
+      "latitude": 27.4212231,
+      "longitude": 76.60541263,
+      "center_code": "z3990"
+    },
+    {
+      "id": 26,
+      "name": "Govt. Senior Sec. School, Tijara Alwar",
+      "district": "Alwar",
+      "latitude": 27.42848846,
+      "longitude": 76.6731892,
+      "center_code": "y2344"
+    },
+    {
+      "id": 27,
+      "name": "Govt. Senior Sec. School, Mundawar, Alwar",
+      "district": "Alwar",
+      "latitude": 27.43279996,
+      "longitude": 76.55868586,
+      "center_code": "s6732"
+    },
+    {
+      "id": 28,
+      "name": "Govt. Senior Sec. School, Raini Alwar",
+      "district": "Alwar",
+      "latitude": 27.44565022,
+      "longitude": 76.58008928,
+      "center_code": "s3950"
+    },
+    {
+      "id": 29,
+      "name": "Govt. Senior Sec. School, Thanagaji, Alwar",
+      "district": "Alwar",
+      "latitude": 27.42810801,
+      "longitude": 76.65476211,
+      "center_code": "b1592"
+    },
+    {
+      "id": 30,
+      "name": "Govt. Senior Sec. School, Laxmangarh Alwar",
+      "district": "Alwar",
+      "latitude": 27.45989485,
+      "longitude": 76.64766566,
+      "center_code": "e9910"
+    },
+    {
+      "id": 31,
+      "name": "Govt. Senior Sec. School, Kathumar, Alwar",
+      "district": "Alwar",
+      "latitude": 27.35794991,
+      "longitude": 76.65055173,
+      "center_code": "t6713"
+    },
+    {
+      "id": 32,
+      "name": "Shri Pyare Lal Gupta Govt. Senior Sec. School, Rajgarh,, Alwar",
+      "district": "Alwar",
+      "latitude": 27.42664444,
+      "longitude": 76.57276815,
+      "center_code": "v7691"
+    },
+    {
+      "id": 33,
+      "name": "Govt. Senior Sec. School, Kishanagarhabas, Alwar",
+      "district": "Alwar",
+      "latitude": 27.42631946,
+      "longitude": 76.55821162,
+      "center_code": "u1918"
+    },
+    {
+      "id": 34,
+      "name": "Vidhya Ashram Public Senior Sec. School, Nasvari Govindgarh",
+      "district": "Alwar",
+      "latitude": 27.37517223,
+      "longitude": 76.60835566,
+      "center_code": "z6189"
+    },
+    {
+      "id": 35,
+      "name": "Govt. Senior Sec. kherli Catumar alwar",
+      "district": "Alwar",
+      "latitude": 27.44805942,
+      "longitude": 76.66670511,
+      "center_code": "d4495"
+    },
+    {
+      "id": 36,
+      "name": "Govt.sec.sr.school kotkasim",
+      "district": "Alwar",
+      "latitude": 27.35957277,
+      "longitude": 76.65126253,
+      "center_code": "o5435"
+    },
+    {
+      "id": 37,
+      "name": "GSSS NUTAN BANSWARA",
+      "district": "Banswara",
+      "latitude": 23.44042521,
+      "longitude": 74.3929306,
+      "center_code": "a4998"
+    },
+    {
+      "id": 38,
+      "name": "GSSS NAGAR BANSWARA",
+      "district": "Banswara",
+      "latitude": 23.54711611,
+      "longitude": 74.38183944,
+      "center_code": "q1025"
+    },
+    {
+      "id": 39,
+      "name": "Govt. Girls Senior Sec. School Chandrapol Gate, Banswara",
+      "district": "Banswara",
+      "latitude": 23.46704598,
+      "longitude": 74.39730888,
+      "center_code": "e2118"
+    },
+    {
+      "id": 40,
+      "name": "GOVT. SENIOR SECONDARY SCHOOL BAGIDORA (215013)",
+      "district": "Banswara",
+      "latitude": 23.50191524,
+      "longitude": 74.3648247,
+      "center_code": "u2681"
+    },
+    {
+      "id": 41,
+      "name": "Govt. Senior Sec. School, Garhi, Banswara",
+      "district": "Banswara",
+      "latitude": 23.50133086,
+      "longitude": 74.30180279,
+      "center_code": "f1602"
+    },
+    {
+      "id": 42,
+      "name": "Govt. Senior Sec. School Danapur Banswara",
+      "district": "Banswara",
+      "latitude": 23.43509079,
+      "longitude": 74.3269933,
+      "center_code": "x1539"
+    },
+    {
+      "id": 43,
+      "name": "Govt. Senior Sec. School, Barmer",
+      "district": "Barmer",
+      "latitude": 25.564785,
+      "longitude": 71.19910154,
+      "center_code": "s4125"
+    },
+    {
+      "id": 44,
+      "name": "Govt. Girls Senior Sec. School, Barmer",
+      "district": "Barmer",
+      "latitude": 25.62804789,
+      "longitude": 71.1765262,
+      "center_code": "c4522"
+    },
+    {
+      "id": 45,
+      "name": "Govt. Senior Sec. School, Bharatpur",
+      "district": "Bharatpur",
+      "latitude": 27.02596768,
+      "longitude": 77.27467807,
+      "center_code": "u8380"
+    },
+    {
+      "id": 46,
+      "name": "Govt. Girls Senior Sec. School, Bharatpur",
+      "district": "Bharatpur",
+      "latitude": 27.06319287,
+      "longitude": 77.31608479,
+      "center_code": "t5842"
+    },
+    {
+      "id": 47,
+      "name": "Govt. Senior Sec. School, Bhilwara",
+      "district": "Bhilwara",
+      "latitude": 25.51686408,
+      "longitude": 74.75008234,
+      "center_code": "p5606"
+    },
+    {
+      "id": 48,
+      "name": "Govt. Girls Senior Sec. School, Bhilwara",
+      "district": "Bhilwara",
+      "latitude": 25.4128445,
+      "longitude": 74.72015187,
+      "center_code": "g9578"
+    },
+    {
+      "id": 49,
+      "name": "Govt. Senior Sec. School, Bikaner",
+      "district": "Bikaner",
+      "latitude": 27.98983329,
+      "longitude": 73.36930036,
+      "center_code": "x1212"
+    },
+    {
+      "id": 50,
+      "name": "Govt. Girls Senior Sec. School, Bikaner",
+      "district": "Bikaner",
+      "latitude": 28.04891513,
+      "longitude": 73.28503465,
+      "center_code": "c5361"
+    },
+    {
+      "id": 51,
+      "name": "Govt. Senior Sec. School, Bundi",
+      "district": "Bundi",
+      "latitude": 25.38524299,
+      "longitude": 75.72953428,
+      "center_code": "b1852"
+    },
+    {
+      "id": 52,
+      "name": "Govt. Girls Senior Sec. School, Bundi",
+      "district": "Bundi",
+      "latitude": 25.4405753,
+      "longitude": 75.72037414,
+      "center_code": "y9702"
+    },
+    {
+      "id": 53,
+      "name": "Govt. Senior Sec. School, Chittorgarh",
+      "district": "Chittorgarh",
+      "latitude": 24.66841311,
+      "longitude": 74.49160832,
+      "center_code": "l8430"
+    },
+    {
+      "id": 54,
+      "name": "Govt. Girls Senior Sec. School, Chittorgarh",
+      "district": "Chittorgarh",
+      "latitude": 24.66554735,
+      "longitude": 74.41284151,
+      "center_code": "z6674"
+    },
+    {
+      "id": 55,
+      "name": "Govt. Senior Sec. School, Churu",
+      "district": "Churu",
+      "latitude": 28.21772918,
+      "longitude": 74.680459,
+      "center_code": "w8850"
+    },
+    {
+      "id": 56,
+      "name": "Govt. Girls Senior Sec. School, Churu",
+      "district": "Churu",
+      "latitude": 28.2350427,
+      "longitude": 74.71001675,
+      "center_code": "j3739"
+    },
+    {
+      "id": 57,
+      "name": "Govt. Senior Sec. School, Dungarpur",
+      "district": "Dungarpur",
+      "latitude": 23.88246624,
+      "longitude": 73.69363545,
+      "center_code": "u1309"
+    },
+    {
+      "id": 58,
+      "name": "Govt. Girls Senior Sec. School, Dungarpur",
+      "district": "Dungarpur",
+      "latitude": 23.79617177,
+      "longitude": 73.71227018,
+      "center_code": "x5714"
+    },
+    {
+      "id": 59,
+      "name": "Govt. Senior Sec. School, Dudoo",
+      "district": "Jaipur",
+      "latitude": 26.94610662,
+      "longitude": 75.85392445,
+      "center_code": "x4341"
+    },
+    {
+      "id": 60,
+      "name": "Govt. Senior Sec. School Nonapura, Jaipur",
+      "district": "Jaipur",
+      "latitude": 26.93540928,
+      "longitude": 75.76857667,
+      "center_code": "t9904"
+    },
+    {
+      "id": 61,
+      "name": "Govt. Senior Sec. School, Chaksu",
+      "district": "Jaipur",
+      "latitude": 26.9410041,
+      "longitude": 75.82537578,
+      "center_code": "w7408"
+    },
+    {
+      "id": 62,
+      "name": "Govt. Darabar Senior Sec. School,Sanbhar Lake, Jaipur",
+      "district": "Jaipur",
+      "latitude": 26.91746905,
+      "longitude": 75.864463,
+      "center_code": "d2217"
+    },
+    {
+      "id": 63,
+      "name": "GSSS CHOMU",
+      "district": "Jaipur",
+      "latitude": 26.93553177,
+      "longitude": 75.77110565,
+      "center_code": "b7208"
+    },
+    {
+      "id": 64,
+      "name": "Shri K.S. Govt. Senior Sec. School, Shahapura",
+      "district": "Jaipur",
+      "latitude": 26.92141053,
+      "longitude": 75.8142281,
+      "center_code": "h5082"
+    },
+    {
+      "id": 65,
+      "name": "Govt. Senior Sec. School, Jamuvaramagarh",
+      "district": "Jaipur",
+      "latitude": 26.9233883,
+      "longitude": 75.7889299,
+      "center_code": "d7830"
+    },
+    {
+      "id": 66,
+      "name": "Govt. Senior Sec. School, Bassi",
+      "district": "Jaipur",
+      "latitude": 26.87577372,
+      "longitude": 75.81539016,
+      "center_code": "q2524"
+    },
+    {
+      "id": 67,
+      "name": "Govt. Senior Sec. School Fulera",
+      "district": "Jaipur",
+      "latitude": 26.85581694,
+      "longitude": 75.77780675,
+      "center_code": "k5094"
+    },
+    {
+      "id": 68,
+      "name": "Govt. Girls Senior Sec. School,Kishanagarh Renaval, (Sanbharalake) Jaipur",
+      "district": "Jaipur",
+      "latitude": 26.87776256,
+      "longitude": 75.86490093,
+      "center_code": "u3258"
+    },
+    {
+      "id": 69,
+      "name": "Govt. Senior Sec. School, Jobaner (Sanbharalake) Jaipur",
+      "district": "Jaipur",
+      "latitude": 26.96129269,
+      "longitude": 75.76903164,
+      "center_code": "h1382"
+    },
+    {
+      "id": 70,
+      "name": "Govt. Girls Senior Sec. School, Chaumoo Jaipur",
+      "district": "Jaipur",
+      "latitude": 26.96214227,
+      "longitude": 75.80673025,
+      "center_code": "r9882"
+    },
+    {
+      "id": 71,
+      "name": "Govt. Senior Sec. School,Nayala Via-Kanota, Tah. Jamavaramagarh",
+      "district": "Jaipur",
+      "latitude": 26.8817005,
+      "longitude": 75.87835343,
+      "center_code": "n4668"
+    },
+    {
+      "id": 72,
+      "name": "Government Higher Secondary School Toda Meena Jamuwaramgarh JAIPUR",
+      "district": "Jaipur",
+      "latitude": 26.93070011,
+      "longitude": 75.77539024,
+      "center_code": "g5111"
+    },
+    {
+      "id": 73,
+      "name": "Govt sec.sr School Kotkhawada",
+      "district": "Jaipur",
+      "latitude": 26.92074158,
+      "longitude": 75.8379942,
+      "center_code": "r7945"
+    },
+    {
+      "id": 74,
+      "name": "M.Gandhi Govt Sec.School Jalsu",
+      "district": "Jaipur",
+      "latitude": 26.92520912,
+      "longitude": 75.80365687,
+      "center_code": "i7168"
+    },
+    {
+      "id": 75,
+      "name": "Govt. Senior Sec. School, Bhopalagarh",
+      "district": "Jaipur",
+      "latitude": 26.93286883,
+      "longitude": 75.85412347,
+      "center_code": "c6166"
+    },
+    {
+      "id": 76,
+      "name": "Govt. Senior Sec. School, Balesar",
+      "district": "Jaipur",
+      "latitude": 26.91118796,
+      "longitude": 75.78114437,
+      "center_code": "a4769"
+    },
+    {
+      "id": 77,
+      "name": "Govt. Senior Sec. School, Jaisalmer",
+      "district": "Jaisalmer",
+      "latitude": 27.06237806,
+      "longitude": 70.83748964,
+      "center_code": "r1891"
+    },
+    {
+      "id": 78,
+      "name": "Govt. Girls Senior Sec. School, Jaisalmer",
+      "district": "Jaisalmer",
+      "latitude": 27.07271441,
+      "longitude": 70.72821777,
+      "center_code": "k5779"
+    },
+    {
+      "id": 79,
+      "name": "Govt. Senior Sec. School, Jalore",
+      "district": "Jalore",
+      "latitude": 25.21789308,
+      "longitude": 72.33148803,
+      "center_code": "w5392"
+    },
+    {
+      "id": 80,
+      "name": "Govt. Girls Senior Sec. School, Jalore",
+      "district": "Jalore",
+      "latitude": 25.16862726,
+      "longitude": 72.32879339,
+      "center_code": "i2008"
+    },
+    {
+      "id": 81,
+      "name": "Govt. Senior Sec. School, Jhunjhunu",
+      "district": "Jhunjhunu",
+      "latitude": 28.06998219,
+      "longitude": 75.5948745,
+      "center_code": "a7299"
+    },
+    {
+      "id": 82,
+      "name": "Govt. Girls Senior Sec. School, Jhunjhunu",
+      "district": "Jhunjhunu",
+      "latitude": 28.07710923,
+      "longitude": 75.55986687,
+      "center_code": "f6152"
+    },
+    {
+      "id": 83,
+      "name": "Govt. Senior Sec. School, Govindagarh Malikapur",
+      "district": "Jhalawar",
+      "latitude": 24.27182536,
+      "longitude": 76.5466981,
+      "center_code": "v4811"
+    },
+    {
+      "id": 84,
+      "name": "Govt. Senior Sec. School Bap",
+      "district": "Jodhpur",
+      "latitude": 26.29347109,
+      "longitude": 73.06932169,
+      "center_code": "o6237"
+    },
+    {
+      "id": 85,
+      "name": "Govt. Sr. Sec. School ghantiyali  Ghantiyal phalodi",
+      "district": "Jodhpur",
+      "latitude": 26.32389424,
+      "longitude": 73.06593176,
+      "center_code": "z7984"
+    },
+    {
+      "id": 86,
+      "name": "Govt. Ma. School,Kanasar",
+      "district": "Jodhpur",
+      "latitude": 26.32937994,
+      "longitude": 73.0410588,
+      "center_code": "x1161"
+    },
+    {
+      "id": 87,
+      "name": "Govt. Senior Sec. School,Lohavat",
+      "district": "Jodhpur",
+      "latitude": 26.31682747,
+      "longitude": 73.04967374,
+      "center_code": "s9395"
+    },
+    {
+      "id": 88,
+      "name": "Govt. Senior Sec. School,Aoo, Falodi",
+      "district": "Jodhpur",
+      "latitude": 26.35284279,
+      "longitude": 72.97731556,
+      "center_code": "v4737"
+    },
+    {
+      "id": 89,
+      "name": "Govt. Senior Sec. School jamba ki dhani",
+      "district": "Jodhpur",
+      "latitude": 26.28950781,
+      "longitude": 73.09446389,
+      "center_code": "r9536"
+    },
+    {
+      "id": 90,
+      "name": "Govt. Senior Sec. School, Falaudi",
+      "district": "Jodhpur",
+      "latitude": 26.33162571,
+      "longitude": 73.01932923,
+      "center_code": "m7681"
+    },
+    {
+      "id": 91,
+      "name": "govt sec.sc.kalau dechu jodhpur",
+      "district": "Jodhpur",
+      "latitude": 26.26400424,
+      "longitude": 72.9843009,
+      "center_code": "c5401"
+    },
+    {
+      "id": 92,
+      "name": "Government Higher Secondary School Chandsama Dechu Jodhpur",
+      "district": "Jodhpur",
+      "latitude": 26.30274671,
+      "longitude": 73.06095796,
+      "center_code": "i7111"
+    },
+    {
+      "id": 93,
+      "name": "Govt. Sr. Sec. School ghantiyali  phalodi",
+      "district": "Jodhpur",
+      "latitude": 26.30272791,
+      "longitude": 73.02033364,
+      "center_code": "k3293"
+    },
+    {
+      "id": 94,
+      "name": "Govt.sec.sr.School Bamanu",
+      "district": "Jodhpur",
+      "latitude": 26.26719169,
+      "longitude": 73.04090797,
+      "center_code": "t6054"
+    },
+    {
+      "id": 95,
+      "name": "Govt.sec.se.School Kolu Pabuji",
+      "district": "Jodhpur",
+      "latitude": 26.35165673,
+      "longitude": 73.07287753,
+      "center_code": "w6282"
+    },
+    {
+      "id": 96,
+      "name": "Government Senior Secondary School Pal Boranada Road Jodhpur",
+      "district": "Jodhpur",
+      "latitude": 26.25447833,
+      "longitude": 72.9958588,
+      "center_code": "i1516"
+    },
+    {
+      "id": 97,
+      "name": "Govt. Senior Sec. School, Osiyan",
+      "district": "Jodhpur",
+      "latitude": 26.35197281,
+      "longitude": 73.02081716,
+      "center_code": "f9997"
+    },
+    {
+      "id": 98,
+      "name": "Govt. Senior Sec. School, Sheragarh",
+      "district": "Jodhpur",
+      "latitude": 26.2518641,
+      "longitude": 72.99454463,
+      "center_code": "j9424"
+    },
+    {
+      "id": 99,
+      "name": "Govt. Senior Sec. School, Looni",
+      "district": "Jodhpur",
+      "latitude": 26.26813144,
+      "longitude": 73.00644023,
+      "center_code": "e2614"
+    },
+    {
+      "id": 100,
+      "name": "Govt. Senior Sec. School, Kota",
+      "district": "Kota",
+      "latitude": 25.14396412,
+      "longitude": 75.84800695,
+      "center_code": "p1553"
+    },
+    {
+      "id": 101,
+      "name": "Govt. Girls Senior Sec. School, Kota",
+      "district": "Kota",
+      "latitude": 25.13457596,
+      "longitude": 75.80079589,
+      "center_code": "x3207"
+    },
+    {
+      "id": 102,
+      "name": "Juhari Govt. Senior Sec. School Ladnoon",
+      "district": "Nagaur",
+      "latitude": 26.98419748,
+      "longitude": 73.76900212,
+      "center_code": "z5978"
+    },
+    {
+      "id": 103,
+      "name": "Govt.Sr.Sec. School Nawa",
+      "district": "Nagaur",
+      "latitude": 26.99568424,
+      "longitude": 73.79722263,
+      "center_code": "s6486"
+    },
+    {
+      "id": 104,
+      "name": "Govt.sec sr.school parbatsar",
+      "district": "Nagaur",
+      "latitude": 26.96604539,
+      "longitude": 73.68368919,
+      "center_code": "y8469"
+    },
+    {
+      "id": 105,
+      "name": "Govt.sr.sce.School Maulasar",
+      "district": "Nagaur",
+      "latitude": 27.02640644,
+      "longitude": 73.69880265,
+      "center_code": "x6333"
+    },
+    {
+      "id": 106,
+      "name": "Govt.sec.sr.school Sadri",
+      "district": "Pali",
+      "latitude": 25.45806729,
+      "longitude": 73.41043523,
+      "center_code": "a6916"
+    },
+    {
+      "id": 107,
+      "name": "Govt. Senior Sec. School, Bamanavas Khurd",
+      "district": "Sawaimadhopur",
+      "latitude": 25.92819343,
+      "longitude": 76.34369082,
+      "center_code": "k8066"
+    },
+    {
+      "id": 108,
+      "name": "Govt. Senior Sec. School, Sikar",
+      "district": "Sikar",
+      "latitude": 27.61094648,
+      "longitude": 74.97157815,
+      "center_code": "n5050"
+    },
+    {
+      "id": 109,
+      "name": "Govt. Girls Senior Sec. School, Sikar",
+      "district": "Sikar",
+      "latitude": 27.69909032,
+      "longitude": 74.96804733,
+      "center_code": "q9313"
+    },
+    {
+      "id": 110,
+      "name": "Govt. Senior Sec. School, Sirohi",
+      "district": "Sirohi",
+      "latitude": 24.76280264,
+      "longitude": 72.7971319,
+      "center_code": "z6786"
+    },
+    {
+      "id": 111,
+      "name": "Govt. Girls Senior Sec. School, Sirohi",
+      "district": "Sirohi",
+      "latitude": 24.85760602,
+      "longitude": 72.88021468,
+      "center_code": "j8398"
+    },
+    {
+      "id": 112,
+      "name": "Govt. Senior Sec. School, Tonk",
+      "district": "Tonk",
+      "latitude": 26.07761989,
+      "longitude": 75.71115861,
+      "center_code": "w3844"
+    },
+    {
+      "id": 113,
+      "name": "Govt. Girls Senior Sec. School, Tonk",
+      "district": "Tonk",
+      "latitude": 26.15128734,
+      "longitude": 75.71657478,
+      "center_code": "r4630"
+    },
+    {
+      "id": 114,
+      "name": "Govt. Senior Sec. School, Udaipur",
+      "district": "Udaipur",
+      "latitude": 24.57513364,
+      "longitude": 73.72370505,
+      "center_code": "i5704"
+    },
+    {
+      "id": 115,
+      "name": "Govt. Girls Senior Sec. School, Udaipur",
+      "district": "Udaipur",
+      "latitude": 24.63816986,
+      "longitude": 73.6983137,
+      "center_code": "h3042"
+    },
+    {
+      "id": 116,
+      "name": "Govt. Senior Sec. School, Dholpur",
+      "district": "Dholpur",
+      "latitude": 26.64542884,
+      "longitude": 77.88213043,
+      "center_code": "m1657"
+    },
+    {
+      "id": 117,
+      "name": "Govt. Girls Senior Sec. School, Dholpur",
+      "district": "Dholpur",
+      "latitude": 26.64202538,
+      "longitude": 77.94436726,
+      "center_code": "t3642"
+    },
+    {
+      "id": 118,
+      "name": "Govt. Senior Sec. School, Dausa",
+      "district": "Dausa",
+      "latitude": 26.80126709,
+      "longitude": 76.46147648,
+      "center_code": "e3290"
+    },
+    {
+      "id": 119,
+      "name": "Govt. Girls Senior Sec. School, Dausa",
+      "district": "Dausa",
+      "latitude": 26.80266208,
+      "longitude": 76.39588692,
+      "center_code": "z8245"
+    },
+    {
+      "id": 120,
+      "name": "Govt. Senior Sec. School, Baran",
+      "district": "Baran",
+      "latitude": 24.90930508,
+      "longitude": 76.73381902,
+      "center_code": "t6906"
+    },
+    {
+      "id": 121,
+      "name": "Govt. Girls Senior Sec. School, Baran",
+      "district": "Baran",
+      "latitude": 24.93628589,
+      "longitude": 76.71776783,
+      "center_code": "a9236"
+    },
+    {
+      "id": 122,
+      "name": "Govt. Senior Sec. School, Rajsamand",
+      "district": "Rajsamand",
+      "latitude": 25.34201002,
+      "longitude": 73.77505351,
+      "center_code": "y1638"
+    },
+    {
+      "id": 123,
+      "name": "Govt. Girls Senior Sec. School, Rajsamand",
+      "district": "Rajsamand",
+      "latitude": 25.23090258,
+      "longitude": 73.84001826,
+      "center_code": "w5973"
+    },
+    {
+      "id": 124,
+      "name": "Govt. Senior Sec. School, Hanumangarh",
+      "district": "Hanumangarh",
+      "latitude": 29.35715857,
+      "longitude": 74.25073308,
+      "center_code": "f4134"
+    },
+    {
+      "id": 125,
+      "name": "Govt. Girls Senior Sec. School, Hanumangarh",
+      "district": "Hanumangarh",
+      "latitude": 29.35269231,
+      "longitude": 74.2876818,
+      "center_code": "s5196"
+    },
+    {
+      "id": 126,
+      "name": "Govt. Senior Sec. School, Nadauti,",
+      "district": "Karauli",
+      "latitude": 26.56205739,
+      "longitude": 77.06685007,
+      "center_code": "z8228"
+    },
+    {
+      "id": 127,
+      "name": "Govt. Senior Sec. School, Pratapgarh",
+      "district": "Pratapgarh",
+      "latitude": 24.0379541,
+      "longitude": 74.59139822,
+      "center_code": "m6577"
+    },
+    {
+      "id": 128,
+      "name": "Govt. Girls Senior Sec. School, Pratapgarh",
+      "district": "Pratapgarh",
+      "latitude": 24.00062193,
+      "longitude": 74.6223218,
+      "center_code": "z8498"
+    },
+    {
+      "id": 129,
+      "name": "Govt. Senior Sec. School, Anupgarh",
+      "district": "Anupgarh",
+      "latitude": 29.20034976,
+      "longitude": 73.19967082,
+      "center_code": "a1781"
+    },
+    {
+      "id": 130,
+      "name": "Govt. Girls Senior Sec. School, Anupgarh",
+      "district": "Anupgarh",
+      "latitude": 29.2193413,
+      "longitude": 73.24716726,
+      "center_code": "f5224"
+    },
+    {
+      "id": 131,
+      "name": "Govt. Senior Sec. School, Balotra",
+      "district": "Balotra",
+      "latitude": 25.86907285,
+      "longitude": 72.21784823,
+      "center_code": "s5508"
+    },
+    {
+      "id": 132,
+      "name": "Govt. Girls Senior Sec. School, Balotra",
+      "district": "Balotra",
+      "latitude": 25.82606331,
+      "longitude": 72.26845563,
+      "center_code": "n6103"
+    },
+    {
+      "id": 133,
+      "name": "Govt. Senior Sec. School,Barakhan",
+      "district": "Beawar",
+      "latitude": 26.07417148,
+      "longitude": 74.33565666,
+      "center_code": "w8046"
+    },
+    {
+      "id": 134,
+      "name": "Govt. Senior Sec. School, Didwana",
+      "district": "Didwana",
+      "latitude": 27.38300234,
+      "longitude": 74.53225311,
+      "center_code": "r1224"
+    },
+    {
+      "id": 135,
+      "name": "Govt. Girls Senior Sec. School, Didwana",
+      "district": "Didwana",
+      "latitude": 27.36737911,
+      "longitude": 74.53872774,
+      "center_code": "z7893"
+    },
+    {
+      "id": 136,
+      "name": "Govt. Jvahar Senior Sec. School,Kuchaman City",
+      "district": "Kuchaman",
+      "latitude": 27.15511067,
+      "longitude": 74.84208989,
+      "center_code": "e8901"
+    },
+    {
+      "id": 137,
+      "name": "Govt. Senior Sec. School, Deeg",
+      "district": "Deeg",
+      "latitude": 27.47910527,
+      "longitude": 77.3265083,
+      "center_code": "n9720"
+    },
+    {
+      "id": 138,
+      "name": "Govt. Girls Senior Sec. School, Deeg",
+      "district": "Deeg",
+      "latitude": 27.48503801,
+      "longitude": 77.31179053,
+      "center_code": "s2848"
+    },
+    {
+      "id": 139,
+      "name": "Govt. Senior Sec. School, todbhim, Gangapur city",
+      "district": "Gangapur",
+      "latitude": 25.15832899,
+      "longitude": 74.2548753,
+      "center_code": "j8713"
+    },
+    {
+      "id": 140,
+      "name": "Govt. Senior Sec. School, Gangapurcity",
+      "district": "Gangapur",
+      "latitude": 25.24342668,
+      "longitude": 74.20743299,
+      "center_code": "t9489"
+    },
+    {
+      "id": 141,
+      "name": "Govt. Senior Sec. School, Kekri",
+      "district": "Kekri",
+      "latitude": 26.01772519,
+      "longitude": 75.1111678,
+      "center_code": "w7262"
+    },
+    {
+      "id": 142,
+      "name": "Govt. Girls Senior Sec. School, Kekri",
+      "district": "Kekri",
+      "latitude": 26.0090611,
+      "longitude": 75.11117636,
+      "center_code": "i4681"
+    },
+    {
+      "id": 143,
+      "name": "Govt. Senior Sec. School, Salumbar",
+      "district": "Salumbar",
+      "latitude": 24.24678487,
+      "longitude": 73.94781705,
+      "center_code": "p7598"
+    },
+    {
+      "id": 144,
+      "name": "Govt. Girls Senior Sec. School, Salumbar",
+      "district": "Salumbar",
+      "latitude": 24.24698724,
+      "longitude": 73.98855834,
+      "center_code": "v3046"
+    },
+    {
+      "id": 145,
+      "name": "Govt. Senior Sec. School, Shahpura",
+      "district": "Shahpura",
+      "latitude": 25.66173207,
+      "longitude": 74.88052563,
+      "center_code": "g8004"
+    },
+    {
+      "id": 146,
+      "name": "Govt. Girls Senior Sec. School, Shahpura",
+      "district": "Shahpura",
+      "latitude": 25.60928604,
+      "longitude": 74.91059018,
+      "center_code": "y6371"
+    },
+    {
+      "id": 147,
+      "name": "Govt. Senior Sec. School, Khairthal",
+      "district": "Khairthal",
+      "latitude": 27.75319875,
+      "longitude": 76.66043467,
+      "center_code": "w9121"
+    },
+    {
+      "id": 148,
+      "name": "Govt. Girls Senior Sec. School, Khairthal",
+      "district": "Khairthal",
+      "latitude": 27.75473764,
+      "longitude": 76.63430814,
+      "center_code": "h9681"
+    },
+    {
+      "id": 149,
+      "name": "Govt. Senior Sec. School, Kotputli",
+      "district": "Kotputli",
+      "latitude": 27.76155323,
+      "longitude": 76.1673675,
+      "center_code": "r7652"
+    },
+    {
+      "id": 150,
+      "name": "Govt. Girls Senior Sec. School, Kotputli",
+      "district": "Kotputli",
+      "latitude": 27.74196283,
+      "longitude": 76.19882867,
+      "center_code": "h4907"
+    }
+  ],
+  "stats": [
+    {
+      "district": "Alwar",
+      "count": 19
+    },
+    {
+      "district": "Jaipur",
+      "count": 18
+    },
+    {
+      "district": "Ajmer",
+      "count": 17
+    },
+    {
+      "district": "Jodhpur",
+      "count": 16
+    },
+    {
+      "district": "Banswara",
+      "count": 6
+    },
+    {
+      "district": "Nagaur",
+      "count": 4
+    },
+    {
+      "district": "Bikaner",
+      "count": 2
+    },
+    {
+      "district": "Jhunjhunu",
+      "count": 2
+    },
+    {
+      "district": "Sirohi",
+      "count": 2
+    },
+    {
+      "district": "Gangapur",
+      "count": 2
+    },
+    {
+      "district": "Barmer",
+      "count": 2
+    },
+    {
+      "district": "Baran",
+      "count": 2
+    },
+    {
+      "district": "Didwana",
+      "count": 2
+    },
+    {
+      "district": "Kotputli",
+      "count": 2
+    },
+    {
+      "district": "Chittorgarh",
+      "count": 2
+    },
+    {
+      "district": "Udaipur",
+      "count": 2
+    },
+    {
+      "district": "Anupgarh",
+      "count": 2
+    },
+    {
+      "district": "Salumbar",
+      "count": 2
+    },
+    {
+      "district": "Bhilwara",
+      "count": 2
+    },
+    {
+      "district": "Jalore",
+      "count": 2
+    },
+    {
+      "district": "Sikar",
+      "count": 2
+    },
+    {
+      "district": "Hanumangarh",
+      "count": 2
+    },
+    {
+      "district": "Deeg",
+      "count": 2
+    },
+    {
+      "district": "Dungarpur",
+      "count": 2
+    },
+    {
+      "district": "Dausa",
+      "count": 2
+    },
+    {
+      "district": "Khairthal",
+      "count": 2
+    },
+    {
+      "district": "Bundi",
+      "count": 2
+    },
+    {
+      "district": "Tonk",
+      "count": 2
+    },
+    {
+      "district": "Pratapgarh",
+      "count": 2
+    },
+    {
+      "district": "Kekri",
+      "count": 2
+    },
+    {
+      "district": "Bharatpur",
+      "count": 2
+    },
+    {
+      "district": "Jaisalmer",
+      "count": 2
+    },
+    {
+      "district": "Rajsamand",
+      "count": 2
+    },
+    {
+      "district": "Churu",
+      "count": 2
+    },
+    {
+      "district": "Kota",
+      "count": 2
+    },
+    {
+      "district": "Dholpur",
+      "count": 2
+    },
+    {
+      "district": "Balotra",
+      "count": 2
+    },
+    {
+      "district": "Shahpura",
+      "count": 2
+    },
+    {
+      "district": "Karauli",
+      "count": 1
+    },
+    {
+      "district": "Pali",
+      "count": 1
+    },
+    {
+      "district": "Beawar",
+      "count": 1
+    },
+    {
+      "district": "Jhalawar",
+      "count": 1
+    },
+    {
+      "district": "Sawaimadhopur",
+      "count": 1
+    },
+    {
+      "district": "Kuchaman",
+      "count": 1
+    }
+  ]
+}
